@@ -1,5 +1,6 @@
-import { ThemeProvider } from '@/components/ui/theme-provider'
-import RootLayout from '@/layouts/Layout'
+
+import { ThemeProvider } from '@/components/theme-provider'
+import RootLayout from '@/layouts/layout'
 import { Outlet, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 

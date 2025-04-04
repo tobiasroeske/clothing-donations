@@ -1,6 +1,7 @@
 import { LaptopMinimal, Moon, Sun } from 'lucide-react'
 import { Button } from './ui/button'
-import { useTheme } from './ui/theme-provider'
+import { useTheme } from './theme-provider'
+
 
 export const MobileModeToggle = () => {
   const { setTheme } = useTheme()

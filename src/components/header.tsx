@@ -1,11 +1,11 @@
 import type { FC } from 'react'
 import NavMobile from './nav-mobile'
-import NavMain from './ui/nav-main'
+import NavMain from './nav-main'
 
 const Header: FC = () => {
   return (
     <header className="bg-background h-fit text-foreground shadow-md fixed inset-0 z-10">
-      <div className="flex items-center justify-between max-w-[1440px] mx-auto ">
+      <div className="flex items-center justify-between max-w-[1440px] mx-auto px-4">
         <img
           className="h-16 w-auto dark:hidden"
           src="/logo.png"
