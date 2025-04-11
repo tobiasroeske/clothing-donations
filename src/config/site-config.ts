@@ -13,4 +13,15 @@ export const siteConfig = {
       href: '/#about-us',
     },
   ],
+  crisisAreas : [
+    { value: 'ukraine', label: 'Ukraine' },
+    { value: 'gaza', label: 'Gaza' },
+    { value: 'sudan', label: 'Sudan' },
+  ],
+
+  clothTypes :[
+    { value: 'jacke', label: 'Jacken' },
+    { value: 'hose', label: 'Hosen' },
+    { value: 'shirt', label: 'Shirts' },
+  ],
 }

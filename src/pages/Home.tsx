@@ -1,6 +1,4 @@
 import { LinkButton } from '@/components/link-button'
-import { Button } from '@/components/ui/button'
-import { Link } from '@tanstack/react-router'
 import type { FC } from 'react'
 
 const HeroSection = () => {
