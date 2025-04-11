@@ -4,8 +4,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
 
@@ -29,14 +27,12 @@ const NavMobile: FC<NavMobileProps> = ({ className }) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          {siteConfig.navLinks.map((link,i) => (
+          {siteConfig.navLinks.map((link, i) => (
             <DropdownMenuItem key={i}>
-              <Link to={link.href}>
-                {link.title}
-              </Link>
+              <Link to={link.href}>{link.title}</Link>
             </DropdownMenuItem>
           ))}
-          
+
           <MobileModeToggle />
         </DropdownMenuContent>
       </DropdownMenu>
