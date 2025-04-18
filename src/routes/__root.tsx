@@ -1,4 +1,3 @@
-
 import { ThemeProvider } from '@/components/theme-provider'
 import RootLayout from '@/layouts/layout'
 import { Outlet, createRootRoute } from '@tanstack/react-router'

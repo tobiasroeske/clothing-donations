@@ -70,13 +70,13 @@ const DonationForm: FC = () => {
       {type === 'pickup' && (
         <>
           <form.AppField name="address.street">
-            {(field) => <field.Textfield label="Straße" withError/>}
+            {(field) => <field.Textfield label="Straße" withError />}
           </form.AppField>
           <form.AppField name="address.postalCode">
-            {(field) => <field.Textfield label="PLZ" withError/>}
+            {(field) => <field.Textfield label="PLZ" withError />}
           </form.AppField>
           <form.AppField name="address.location">
-            {(field) => <field.Textfield label="Ort" withError/>}
+            {(field) => <field.Textfield label="Ort" withError />}
           </form.AppField>
         </>
       )}
@@ -109,6 +109,7 @@ export const RegisterPage = () => {
           persönlich übergibst oder eine Abholung wünschst.
         </p>
       </section>
+
       <Card className="px-4">
         <h2>Anmeldung</h2>
         <DonationForm />

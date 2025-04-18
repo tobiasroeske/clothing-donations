@@ -1,5 +1,6 @@
+volumes/db/data
+volumes/storage
 node_modules
-.DS_Store
-dist
-dist-ssr
-*.local
+.env
+test.http
+docker-compose.override.yml
