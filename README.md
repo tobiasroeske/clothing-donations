@@ -17,11 +17,12 @@ This is a React-based web application for registering clothing donations for a n
 
 ## 🚀 Getting Started Locally
 
-### 1. Clone the Repository
+### 1. Clone the Repository and install dependencies
 
 ```bash
 git clone git@github.com:tobiasroeske/clothing-donations.git
 cd clothing-donations
+yarn install
 ```
 
 ### 2. Set up Environment Variables
@@ -59,6 +60,16 @@ Once running, the Supabase Studio is available at:
 - **Username:** `supabase`
 - **Password:** `this_password_is_insecure_and_should_be_updated`
 
+## ▶️ Start the Frontend
+
+```bash
+yarn dev
+```
+
+The app will be available at:
+
+**[http://localhost:3000](http://localhost:3000)**
+
 ### Stop Supabase
 
 ```bash
@@ -66,17 +77,6 @@ yarn dev:docker:down
 ```
 
 ---
-
-## ▶️ Start the Frontend
-
-```bash
-yarn install
-yarn dev
-```
-
-The app will be available at:
-
-**[http://localhost:3000](http://localhost:3000)**
 
 ---
 
@@ -115,6 +115,9 @@ yarn test             # Run tests with Vitest
 yarn dev:docker       # Start Supabase containers
 yarn dev:docker:down  # Stop Supabase containers
 yarn dev:docker:pull  # Pull latest Supabase Docker images
+
+# Database setup
+yarn dev:db:push      # Push migrations to local database
 ```
 
 ---
