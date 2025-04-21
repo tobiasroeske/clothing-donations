@@ -11,19 +11,14 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as SuccessImport } from './routes/success'
 import { Route as RegisterImport } from './routes/register'
 import { Route as PrivacyPolicyImport } from './routes/privacy-policy'
 import { Route as ImprintImport } from './routes/imprint'
+import { Route as R404Import } from './routes/404'
 import { Route as IndexImport } from './routes/index'
+import { Route as SuccessDonationIdImport } from './routes/success.$donationId'
 
 // Create/Update Routes
-
-const SuccessRoute = SuccessImport.update({
-  id: '/success',
-  path: '/success',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const RegisterRoute = RegisterImport.update({
   id: '/register',
@@ -43,9 +38,21 @@ const ImprintRoute = ImprintImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const R404Route = R404Import.update({
+  id: '/404',
+  path: '/404',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SuccessDonationIdRoute = SuccessDonationIdImport.update({
+  id: '/success/$donationId',
+  path: '/success/$donationId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -58,6 +65,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/404': {
+      id: '/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof R404Import
       parentRoute: typeof rootRoute
     }
     '/imprint': {
@@ -81,11 +95,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterImport
       parentRoute: typeof rootRoute
     }
-    '/success': {
-      id: '/success'
-      path: '/success'
-      fullPath: '/success'
-      preLoaderRoute: typeof SuccessImport
+    '/success/$donationId': {
+      id: '/success/$donationId'
+      path: '/success/$donationId'
+      fullPath: '/success/$donationId'
+      preLoaderRoute: typeof SuccessDonationIdImport
       parentRoute: typeof rootRoute
     }
   }
@@ -95,58 +109,76 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/imprint': typeof ImprintRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/register': typeof RegisterRoute
-  '/success': typeof SuccessRoute
+  '/success/$donationId': typeof SuccessDonationIdRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/imprint': typeof ImprintRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/register': typeof RegisterRoute
-  '/success': typeof SuccessRoute
+  '/success/$donationId': typeof SuccessDonationIdRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/404': typeof R404Route
   '/imprint': typeof ImprintRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/register': typeof RegisterRoute
-  '/success': typeof SuccessRoute
+  '/success/$donationId': typeof SuccessDonationIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/imprint' | '/privacy-policy' | '/register' | '/success'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/imprint' | '/privacy-policy' | '/register' | '/success'
-  id:
-    | '__root__'
+  fullPaths:
     | '/'
+    | '/404'
     | '/imprint'
     | '/privacy-policy'
     | '/register'
-    | '/success'
+    | '/success/$donationId'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/404'
+    | '/imprint'
+    | '/privacy-policy'
+    | '/register'
+    | '/success/$donationId'
+  id:
+    | '__root__'
+    | '/'
+    | '/404'
+    | '/imprint'
+    | '/privacy-policy'
+    | '/register'
+    | '/success/$donationId'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R404Route: typeof R404Route
   ImprintRoute: typeof ImprintRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   RegisterRoute: typeof RegisterRoute
-  SuccessRoute: typeof SuccessRoute
+  SuccessDonationIdRoute: typeof SuccessDonationIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R404Route: R404Route,
   ImprintRoute: ImprintRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   RegisterRoute: RegisterRoute,
-  SuccessRoute: SuccessRoute,
+  SuccessDonationIdRoute: SuccessDonationIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -160,14 +192,18 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/404",
         "/imprint",
         "/privacy-policy",
         "/register",
-        "/success"
+        "/success/$donationId"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/404": {
+      "filePath": "404.tsx"
     },
     "/imprint": {
       "filePath": "imprint.tsx"
@@ -178,8 +214,8 @@ export const routeTree = rootRoute
     "/register": {
       "filePath": "register.tsx"
     },
-    "/success": {
-      "filePath": "success.tsx"
+    "/success/$donationId": {
+      "filePath": "success.$donationId.tsx"
     }
   }
 }

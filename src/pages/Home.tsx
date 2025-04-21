@@ -1,4 +1,7 @@
+import { getDonations } from '@/api/getDonations'
 import { LinkButton } from '@/components/link-button'
+import { siteConfig } from '@/config/site-config'
+import { useQuery } from '@tanstack/react-query'
 import type { FC } from 'react'
 
 const HeroSection = () => {
@@ -18,9 +21,12 @@ const HeroSection = () => {
   )
 }
 
-
-
 const AboutSection = () => {
+  const { isPending, data } = useQuery({
+    queryKey: ['donations'],
+    queryFn: getDonations,
+  })
+
   return (
     <section
       id="about-us"
@@ -50,8 +56,11 @@ const AboutSection = () => {
               Abholung.
             </li>
           </ol>
-          <LinkButton href='/register' className="mt-8 w-full self-center hidden md:block max-w-[400px] bg-primary text-white">
-            Jetzt registriere
+          <LinkButton
+            href="/register"
+            className="mt-8 w-full self-center hidden md:block max-w-[400px] bg-primary text-white"
+          >
+            {siteConfig.registerButton}
           </LinkButton>
         </article>
         <img
@@ -60,8 +69,30 @@ const AboutSection = () => {
           className="w-full rounded-md md:w-1/2 object-cover object-center"
         />
       </div>
-      <LinkButton href='/register' className="mt-8 w-full md:hidden max-w-[400px] bg-primary text-white">
-        Jetzt registriere
+      <div className="mt-12 flex flex-col items-center text-center">
+        <p className="text-muted-foreground text-base">Schon gespendet:</p>
+
+        <div className="text-4xl font-bold text-primary mt-2">
+          {isPending
+            ? 'Lädt...'
+            : data && data.length > 0
+              ? data.length
+              : 'Noch keine Spenden registriert'}
+        </div>
+
+        <p className="text-muted-foreground mt-1">
+          {isPending
+            ? 'Wir zählen noch...'
+            : data && data.length > 0
+              ? 'Spenden wurden bereits über unsere Plattform registriert.'
+              : 'Noch wurde keine Spende erfasst – du kannst den Anfang machen!'}
+        </p>
+      </div>
+      <LinkButton
+        href="/register"
+        className="mt-8 w-full md:hidden max-w-[400px] bg-primary text-white"
+      >
+        {siteConfig.registerButton}
       </LinkButton>
     </section>
   )

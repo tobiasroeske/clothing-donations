@@ -17,7 +17,7 @@ export const Textfield: FC<TextfieldProps> = ({
   const field = useFieldContext<string>()
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-2">
       <Label htmlFor={field.name}>{label}</Label>
       <Input
         id={field.name}

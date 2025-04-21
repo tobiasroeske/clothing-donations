@@ -1,9 +1,6 @@
+import PrivacyPolicyPage from '@/pages/PrivacyPolicy'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/privacy-policy')({
-  component: RouteComponent,
+  component: PrivacyPolicyPage,
 })
-
-function RouteComponent() {
-  return <div>Hello "/privacy-policy"!</div>
-}

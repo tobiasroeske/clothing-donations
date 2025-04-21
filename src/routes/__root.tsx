@@ -1,15 +1,21 @@
-import { ThemeProvider } from '@/components/theme-provider'
+import { Provider } from '@/components/provider'
 import RootLayout from '@/layouts/layout'
-import { Outlet, createRootRoute } from '@tanstack/react-router'
+import {
+  Outlet,
+  createRootRoute,
+} from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+import { NotFound } from './404'
 
 export const Route = createRootRoute({
   component: () => (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <Provider>
       <RootLayout>
         <Outlet />
         <TanStackRouterDevtools />
       </RootLayout>
-    </ThemeProvider>
+    </Provider>
   ),
+  errorComponent: () => <NotFound />,
+  notFoundComponent: () => <NotFound />,
 })
