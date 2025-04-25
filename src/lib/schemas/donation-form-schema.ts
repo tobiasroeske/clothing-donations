@@ -1,7 +1,8 @@
+import { siteConfig } from '@/config/site-config'
 import z from 'zod'
 
 const baseSchema = z.object({
-  name: z.string(),
+  name: z.string().min(1, 'Bitte gib deinen Namen an.'),
   type: z.enum(['pickup', 'dropoff']),
   clothTypes: z.array(z.string()),
   crisisArea: z.string().nonempty('Bitte wähle ein Krisengebiet aus.'),
@@ -26,12 +27,12 @@ export const donationFormSchema = rawUnion
   .refine(
     (data) => {
       if (data.type === 'pickup') {
-        return data.address.postalCode.slice(0, 2) === '80'
+        return data.address.postalCode.slice(0, 2) === siteConfig.zipcodeData.firstDigits
       }
       return true
     },
     {
-      message: 'Die Abholadresse liegt nicht in der Nähe von München (80000 - 80999))',
+      message: `Die Abholadresse liegt nicht in der Nähe von ${siteConfig.zipcodeData.zipCodeLocation} (${siteConfig.zipcodeData.zipCodeArea})`,
       path: ['address', 'postalCode'],
     },
   )
@@ -39,9 +40,7 @@ export const donationFormSchema = rawUnion
     message: 'Bitte wähle mindestens einen Kleidertyp aus.',
     path: ['clothTypes'],
   })
-  .refine((data) => data.name.length > 0, {
-    message: 'Bitte gib deinen Namen an.',
-  })
+  
 
 export type DonationFormValues = z.infer<typeof donationFormSchema>
 

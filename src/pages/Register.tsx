@@ -28,13 +28,11 @@ const DonationForm: FC = () => {
     },
     onSubmit: async (values) => {
       createToast()
-      setTimeout(() => {
-        mutation.mutateAsync(values.value)
-      }, 2000)
+      mutateAsync(values.value)
     },
   })
 
-  const mutation = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationFn: createDonation,
     onSuccess: ({ id }) => {
       return navigate({ to: `/success/${id}` })
@@ -115,7 +113,10 @@ const DonationForm: FC = () => {
           })}
         >
           {({ canSubmit, isSubmitting }) => (
-            <Button type="submit" disabled={!canSubmit || isSubmitting}>
+            <Button
+              type="submit"
+              disabled={!canSubmit || isSubmitting || isPending}
+            >
               Abschicken
             </Button>
           )}

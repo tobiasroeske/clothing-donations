@@ -1,12 +1,9 @@
-// lib/api/create-donation.ts
-
 import { donationFormSchema } from '@/lib/schemas/donation-form-schema'
 import supabase from '@/lib/supabase-client'
 
 export const createDonation = async (
   input: unknown,
 ): Promise<{ id: string }> => {
-  // 1. Validierung des Inputs gegen das Formularschema
   const parsed = donationFormSchema.safeParse(input)
 
   if (!parsed.success) {
@@ -16,7 +13,6 @@ export const createDonation = async (
 
   const data = parsed.data
 
-  // 2. Transformation in die flache Struktur für die DB
   const insertData = {
     name: data.name,
     type: data.type,
@@ -27,11 +23,10 @@ export const createDonation = async (
     location: data.type === 'pickup' ? data.address.location : null,
   }
 
-  // 3. Insert in Supabase
   const { data: inserted, error } = await supabase
     .from('donations')
     .insert(insertData)
-    .select('id') // nur ID zurückgeben
+    .select('id') 
     .single()
 
   if (error) {

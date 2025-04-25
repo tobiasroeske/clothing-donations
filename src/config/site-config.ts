@@ -38,4 +38,9 @@ export const siteConfig = {
     { value: 'babybekleidung', label: 'Babybekleidung' },
   ],
   toastMessage: 'Kleiderspende wurde erfolgreich registriert',
+  zipcodeData: {
+    zipCodeArea: '80000 - 80999',
+    zipCodeLocation: 'München',
+    firstDigits: '80',
+  }
 }
